@@ -59,6 +59,7 @@ class TestFragment : Fragment() {
         // Resultado
         val resultado = num1 * num2
         resultText.text = "Resultado: $resultado"
+
     }
 
     companion object {

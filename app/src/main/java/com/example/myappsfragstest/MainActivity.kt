@@ -1,12 +1,13 @@
 package com.example.myappsfragstest
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
-import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.example.myappsfragstest.test.TestFragment
-import com.bumptech.glide.Glide
+import android.content.Intent
+
+lateinit var boton: Button
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,9 +17,9 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         supportActionBar?.hide()
 
-        if(savedInstanceState == null){
+        if(savedInstanceState == null){ //Control de rotacion para guardar la estancia
 
-            val fragment = TestFragment.newInstance(
+            val fragment = TestFragment.newInstance( //paso de datos
                 param1 = "Hello",
                 param2 = 5,
                 param3 = 5,
@@ -26,11 +27,16 @@ class MainActivity : AppCompatActivity() {
                 param5 = true
             )
 
-            supportFragmentManager.commit {
+            supportFragmentManager.commit { //inicializar el fragmento
                 setReorderingAllowed(true)
                 add(R.id.fragment_container, fragment) //
             }
-            val bundle = bundleOf()
+
+            boton = findViewById(R.id.BtnSA)
+            boton.setOnClickListener {
+                var intent = Intent(this, SecondActivity::class.java)
+                startActivity(intent)
+            }
 
         }
 
