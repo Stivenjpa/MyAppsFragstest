@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.example.myappsfragstest.test.TestFragment
+import com.bumptech.glide.Glide
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,11 +17,21 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         if(savedInstanceState == null){
-            val bundle = bundleOf()
+
+            val fragment = TestFragment.newInstance(
+                param1 = "Hello",
+                param2 = 5,
+                param3 = 5,
+                param4 = R.drawable.rick,
+                param5 = true
+            )
+
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                add<TestFragment>(R.layout.fragment_test,args = bundle)
+                add(R.id.fragment_container, fragment) //
             }
+            val bundle = bundleOf()
+
         }
 
     }
